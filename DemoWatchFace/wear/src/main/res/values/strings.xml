@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DemoWatchFace</string>
+    <string name="analog_name">Custom Analog</string>
+</resources>
