@@ -156,28 +156,28 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
             num11Bitmap = ((BitmapDrawable)num11Drawable).getBitmap();
             num12Bitmap = ((BitmapDrawable)num12Drawable).getBitmap();
 
-            mHourPaint = new Paint();
-            mHourPaint.setARGB(255, 0, 0, 0);
-            mHourPaint.setStrokeWidth(7.f);
-            mHourPaint.setAntiAlias(true);
-            mHourPaint.setStrokeCap(Paint.Cap.ROUND);
-
-            mMinutePaint = new Paint();
-            mMinutePaint.setARGB(255, 0, 0, 0);
-            mMinutePaint.setStrokeWidth(5.f);
-            mMinutePaint.setAntiAlias(true);
-            mMinutePaint.setStrokeCap(Paint.Cap.ROUND);
-
-            mSecondPaint = new Paint();
-            mSecondPaint.setARGB(255, 255, 0, 0);
-            mSecondPaint.setStrokeWidth(3.f);
-            mSecondPaint.setAntiAlias(true);
-            mSecondPaint.setStrokeCap(Paint.Cap.ROUND);
-
-            mTickPaint = new Paint();
-            mTickPaint.setARGB(204, 255, 255, 255);
-            mTickPaint.setStrokeWidth(3.f);
-            mTickPaint.setAntiAlias(true);
+//            mHourPaint = new Paint();
+//            mHourPaint.setARGB(255, 0, 0, 0);
+//            mHourPaint.setStrokeWidth(7.f);
+//            mHourPaint.setAntiAlias(true);
+//            mHourPaint.setStrokeCap(Paint.Cap.ROUND);
+//
+//            mMinutePaint = new Paint();
+//            mMinutePaint.setARGB(255, 0, 0, 0);
+//            mMinutePaint.setStrokeWidth(5.f);
+//            mMinutePaint.setAntiAlias(true);
+//            mMinutePaint.setStrokeCap(Paint.Cap.ROUND);
+//
+//            mSecondPaint = new Paint();
+//            mSecondPaint.setARGB(255, 255, 0, 0);
+//            mSecondPaint.setStrokeWidth(3.f);
+//            mSecondPaint.setAntiAlias(true);
+//            mSecondPaint.setStrokeCap(Paint.Cap.ROUND);
+//
+//            mTickPaint = new Paint();
+//            mTickPaint.setARGB(204, 255, 255, 255);
+//            mTickPaint.setStrokeWidth(3.f);
+//            mTickPaint.setAntiAlias(true);
 
             mTime = new Time();
 
@@ -216,13 +216,13 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "onAmbientModeChanged: " + inAmbientMode);
             }
-            if (mLowBitAmbient) {
-                boolean antialias = !inAmbientMode;
-                mHourPaint.setAntiAlias(antialias);
-                mMinutePaint.setAntiAlias(antialias);
-                mSecondPaint.setAntiAlias(antialias);
-                mTickPaint.setAntiAlias(antialias);
-            }
+//            if (mLowBitAmbient) {
+//                boolean antialias = !inAmbientMode;
+//                mHourPaint.setAntiAlias(antialias);
+//                mMinutePaint.setAntiAlias(antialias);
+//                mSecondPaint.setAntiAlias(antialias);
+//                mTickPaint.setAntiAlias(antialias);
+//            }
 
             invalidate();
 
@@ -235,13 +235,13 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
         public void onInterruptionFilterChanged(int interruptionFilter) {
             super.onInterruptionFilterChanged(interruptionFilter);
             boolean inMuteMode = (interruptionFilter == WatchFaceService.INTERRUPTION_FILTER_NONE);
-            if (mMute != inMuteMode) {
-                mMute = inMuteMode;
-                mHourPaint.setAlpha(inMuteMode ? 100 : 255);
-                mMinutePaint.setAlpha(inMuteMode ? 100 : 255);
-                mSecondPaint.setAlpha(inMuteMode ? 80 : 255);
-                invalidate();
-            }
+//            if (mMute != inMuteMode) {
+//                mMute = inMuteMode;
+//                mHourPaint.setAlpha(inMuteMode ? 100 : 255);
+//                mMinutePaint.setAlpha(inMuteMode ? 100 : 255);
+//                mSecondPaint.setAlpha(inMuteMode ? 80 : 255);
+//                invalidate();
+//            }
         }
 
         @Override
@@ -251,6 +251,7 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
 
             int width = bounds.width();
             int height = bounds.height();
+            int sizeofset = width/7;
 
             // Draw the background, scaled to fit.
             if (mBackgroundScaledBitmap == null
@@ -260,18 +261,18 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
             }
             canvas.drawBitmap(mBackgroundScaledBitmap, 0, 0, null);
 
-            canvas.drawBitmap(num1Bitmap, 0, 0, null);
-            canvas.drawBitmap(num2Bitmap, 0, 0, null);
-            canvas.drawBitmap(num3Bitmap, 0, 0, null);
-            canvas.drawBitmap(num4Bitmap, 0, 0, null);
-            canvas.drawBitmap(num5Bitmap, 0, 0, null);
-            canvas.drawBitmap(num6Bitmap, 0, 0, null);
-            canvas.drawBitmap(num7Bitmap, 0, 0, null);
-            canvas.drawBitmap(num8Bitmap, 0, 0, null);
-            canvas.drawBitmap(num9Bitmap, 0, 0, null);
-            canvas.drawBitmap(num10Bitmap, 0, 0, null);
-            canvas.drawBitmap(num11Bitmap, 0, 0, null);
-            canvas.drawBitmap(num12Bitmap, width/2, 10, null);
+            canvas.drawBitmap(num1Bitmap, sizeofset*5-sizeofset/2-num1Bitmap.getWidth()/2, sizeofset*2-sizeofset/2-num1Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num2Bitmap, sizeofset*6-sizeofset/2-num2Bitmap.getWidth()/2, sizeofset*3-sizeofset/2-num2Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num3Bitmap, sizeofset*7-sizeofset/2-num3Bitmap.getWidth()/2, height/2-num3Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num4Bitmap, sizeofset*6-sizeofset/2-num4Bitmap.getWidth()/2, sizeofset-sizeofset/2, null);
+            canvas.drawBitmap(num5Bitmap, sizeofset*5-sizeofset/2-num5Bitmap.getWidth()/2, sizeofset-sizeofset/2, null);
+            canvas.drawBitmap(num6Bitmap, sizeofset*4-sizeofset/2-num12Bitmap.getWidth()/2, height-15-num6Bitmap.getHeight(), null);
+            canvas.drawBitmap(num7Bitmap, sizeofset*3-sizeofset/2-num7Bitmap.getWidth()/2, height/2-num9Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num8Bitmap, sizeofset*2-sizeofset/2-num8Bitmap.getWidth()/2, height/2-num9Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num9Bitmap, sizeofset/2-num9Bitmap.getWidth()/2, sizeofset*4-sizeofset/2-num9Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num10Bitmap, sizeofset*2-sizeofset/2-num10Bitmap.getWidth()/2, sizeofset*3-sizeofset/2-num10Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num11Bitmap, sizeofset*3-sizeofset/2-num11Bitmap.getWidth()/2, sizeofset*2-sizeofset/2-num11Bitmap.getHeight()/2, null);
+            canvas.drawBitmap(num12Bitmap, sizeofset*4-sizeofset/2-num12Bitmap.getWidth()/2, sizeofset/2-num12Bitmap.getHeight()/2, null);
 
             // Find the center. Ignore the window insets so that, on round watches with a
             // "chin", the watch face is centered on the entire screen, not just the usable
@@ -292,28 +293,28 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
 //                        centerX + outerX, centerY + outerY, mTickPaint);
 //            }
 
-            float secRot = mTime.second / 30f * (float) Math.PI;
-            int minutes = mTime.minute;
-            float minRot = minutes / 30f * (float) Math.PI;
-            float hrRot = ((mTime.hour + (minutes / 60f)) / 6f ) * (float) Math.PI;
-
-            float secLength = centerX - 20;
-            float minLength = centerX - 40;
-            float hrLength = centerX - 80;
-
-            if (!isInAmbientMode()) {
-                float secX = (float) Math.sin(secRot) * secLength;
-                float secY = (float) -Math.cos(secRot) * secLength;
-                canvas.drawLine(centerX, centerY, centerX + secX, centerY + secY, mSecondPaint);
-            }
-
-            float minX = (float) Math.sin(minRot) * minLength;
-            float minY = (float) -Math.cos(minRot) * minLength;
-            canvas.drawLine(centerX, centerY, centerX + minX, centerY + minY, mMinutePaint);
-
-            float hrX = (float) Math.sin(hrRot) * hrLength;
-            float hrY = (float) -Math.cos(hrRot) * hrLength;
-            canvas.drawLine(centerX, centerY, centerX + hrX, centerY + hrY, mHourPaint);
+//            float secRot = mTime.second / 30f * (float) Math.PI;
+//            int minutes = mTime.minute;
+//            float minRot = minutes / 30f * (float) Math.PI;
+//            float hrRot = ((mTime.hour + (minutes / 60f)) / 6f ) * (float) Math.PI;
+//
+//            float secLength = centerX - 20;
+//            float minLength = centerX - 40;
+//            float hrLength = centerX - 80;
+//
+//            if (!isInAmbientMode()) {
+//                float secX = (float) Math.sin(secRot) * secLength;
+//                float secY = (float) -Math.cos(secRot) * secLength;
+//                canvas.drawLine(centerX, centerY, centerX + secX, centerY + secY, mSecondPaint);
+//            }
+//
+//            float minX = (float) Math.sin(minRot) * minLength;
+//            float minY = (float) -Math.cos(minRot) * minLength;
+//            canvas.drawLine(centerX, centerY, centerX + minX, centerY + minY, mMinutePaint);
+//
+//            float hrX = (float) Math.sin(hrRot) * hrLength;
+//            float hrY = (float) -Math.cos(hrRot) * hrLength;
+//            canvas.drawLine(centerX, centerY, centerX + hrX, centerY + hrY, mHourPaint);
 
         }
 
